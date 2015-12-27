@@ -1,0 +1,15 @@
+{
+    "name": "wptailor/add-descendants-as-submenu-items",
+    "description": "Automatically all of a nav menu item's descendants as submenu items. Designed for pages but will work with any hierarchical post type or taxonomy.",
+    "type": "wordpress-plugin",
+    "require": {
+        "composer/installers": "^1.0"
+    },
+    "license": "GPL-3.0+",
+    "authors": [
+        {
+            "name": "Zlatko Zlatev",
+            "email": "zlatko@ralev.com"
+        }
+    ]
+}
