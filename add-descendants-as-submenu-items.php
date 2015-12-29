@@ -235,6 +235,12 @@ class Add_Descendants_As_Submenu_Items {
 	 * @return array Potentially modified array of nav menu items.
 	 */
 	public function add_children_to_menu( $items ) {
+
+		global $wp_customize;
+
+		if ( $wp_customize && $wp_customize->is_preview() && is_admin() )
+			return $items;
+
 		$menu_order = count( $items ) + 1000;
 		$filter_added = false;
 
@@ -276,6 +282,7 @@ class Add_Descendants_As_Submenu_Items {
 			foreach ( $children as $child ) {
 				$child = wp_setup_nav_menu_item( $child );
 				$child->db_id = $child->ID;
+				$child->status = ( ! isset( $child->post_status ) || $child->post_status != 'draft' ) ? 'publish' : 'draft';
 
 				$this->added[$child->ID] = true; // We'll need this later
 
@@ -367,5 +374,3 @@ class Add_Descendants_As_Submenu_Items {
 
 // Initialize the plugin
 $add_descendants_as_submenu_items = new Add_Descendants_As_Submenu_Items();
-
-?>
